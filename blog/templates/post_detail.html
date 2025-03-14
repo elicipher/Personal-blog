@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+{% block content %}
+    <body>
+
+        <!--Preloader Start-->
+        <div class="preloader">
+            <div class="loader "></div>
+        </div>
+        <!--Preloader End-->
+
+        <!--Navbar Start-->
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container">
+                <!-- LOGO -->
+                <a class="navbar-brand logo" href="index.html">
+                    نت کپی
+                </a>
+
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a href="{% url 'blog:blog' %}" class="nav-link active">برگشت</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <!--Navbar End-->
+
+        <section class="banner-blog">
+            <div id="particles-js"></div>
+            <!--Banner Caption-->
+            <div class="banner-caption text-center">
+                <h1>صفحه پست وبلاگ</h1>
+                <div class="bread-crumb mt-10">
+                    <a href="index.html">خانه</a>
+                    <a href="{% url 'blog:blog' %}">وبلاگ</a>
+                    <a href="#">صفحه</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="blog-detail pt-100 pb-100">
+            <div class="container">
+                <div class="row">
+                    <!--Blog Content-->
+                    <div class="col-lg-8 offset-lg-2">
+                        <!--Blog Image-->
+                        <div class="blog-image">
+                            <img src="{{STATIC_PATH}}images/blog/blog-big.jpg" alt="">
+                        </div>
+                        <!--Blog Heading-->
+                        <div class="blog-heading">
+                            <h2>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم </h2>
+                            <div class="blog-meta">
+                                <span class="date">22 مرداد 1400</span>
+                                <span class="by">توسط نت کپی</span>
+                            </div>
+                        </div>
+                        <!--Blog Content-->
+                        <div class="blog-content">
+                            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد </p>
+                            <br>
+                            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز </p>
+                            <blockquote>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز </blockquote>
+                            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد </p>
+                        </div>
+                        <div class="col-md-12">
+                            <!--Blog Comments-->
+                            <h3 class="comment-title">نظرات</h3>
+                            <ul class="post-comment">
+                                <li>
+                                    <img src="{{STATIC_PATH}}images/comment-authors/img-1.jpg" alt="">
+                                    <div class="comment-info">
+                                        <h3>آدام همتی</h3>
+                                        <a href="#">پاسخ</a>
+                                        <span>22 مرداد 1400 15:40</span>
+                                        <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است </p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <img src="{{STATIC_PATH}}images/comment-authors/img-2.jpg" alt="">
+                                    <div class="comment-info">
+                                          <h3>آدام همتی</h3>
+                                          <a href="#">پاسخ</a>
+                                          <span>22 مرداد 1400 15:40</span>
+                                        <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است </p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <img src="{{STATIC_PATH}}images/comment-authors/img-3.jpg" alt="">
+                                    <div class="comment-info">
+                                          <h3>آدام همتی</h3>
+                                          <a href="#">پاسخ</a>
+                                          <span>22 مرداد 1400 15:40</span>
+                                        <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است </p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <!--Blog Comment Form-->
+                        <form class="col-md-12 contact-form" action="#">
+                            <h3 class="comment-title">پاسخ دهید</h3>
+                            <div class="row">
+                                <!--Name-->
+                                <div class="col-md-6">
+                                    <input class="form-inpt" type="text" required="required" placeholder="نام">
+                                </div>
+                                <!--Email-->
+                                <div class="col-md-6">
+                                    <input class="form-inpt" type="text" placeholder="ایمیل" required="required">
+                                </div>
+                                <!--Message-->
+                                <div class="col-md-12">
+                                    <textarea name="form-message" placeholder="نظر شما" rows="8"></textarea>
+                                </div>
+                                <div class="col-md-12 text-center pt-30">
+                                    <input id="submit" class="main-btn" type="submit" value="ارسال نظر">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+{% endblock %}
+
