@@ -1,0 +1,26 @@
+{% extends 'auth_base.html' %}
+
+{% block content %}
+<form method="post" >
+{% csrf_token %}
+<div class="col-12">
+    {{form.user_name}}
+    <small class="text-danger">{{ form.userـname.errors }}</small>
+</div>
+<div class="col-12">
+    {{form.email}}
+    <small class="text-danger">{{ form.email.errors }}</small>
+</div>
+<div class="col-12">
+    {{form.password}}
+    <small class="text-danger">{{ form.password.errors  }}</small>
+</div>
+<div class="col-12">
+    {{form.confirm_password}}
+    <small class="text-danger">{{ form.confirm_password.errors }}</small>
+    
+</div>
+<button class="submit-btn">ثبت نام</button>
+</form>
+
+{% endblock %}
