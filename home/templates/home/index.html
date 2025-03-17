@@ -42,12 +42,22 @@
                         <li class="nav-item">
                             <a href="#" class="nav-link" data-scroll-nav="5">تماس با من</a>
                         </li>
+                        {% if request.user.is_authenticated %}
+                        <li class="nav-item">
+                            <a href="" class="nav-link" >پروفایل</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{% url 'account:user_logout' %}" class="nav-link" >خروج</a>
+                        </li>
+                        {% else %}
                         <li class="nav-item">
                             <a href="{% url 'account:user_register' %}" class="nav-link" >ورود / عضویت</a>
                         </li>
+                        {% endif %}
                     </ul>
                 </div>
             </div>
+            {% include 'include/massages.html' %}
         </nav>
         <!--Navbar End-->
 
