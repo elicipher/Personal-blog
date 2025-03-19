@@ -2,8 +2,8 @@ from django.shortcuts import render , redirect
 from django.views import View
 from .models import Member
 from django.contrib import messages
-from django.contrib.auth import authenticate , login , logout
-from .forms import UserRegitrationForm , UserLoginForm
+from django.contrib.auth import login , logout
+from .forms import UserRegitrationForm , UserLoginForm ,EditProfileForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
@@ -77,3 +77,20 @@ class LogoutView(LoginRequiredMixin , View):
             return redirect('home:home')
 
 
+class EditProfileView(LoginRequiredMixin,View):
+    form_class = EditProfileForm
+    template_name = 'account/user_profile.html'
+    
+    def get(self , request):
+        form = self.form_class(instance=request.user , initial={"full_name":request.user.full_name ,'email':request.user.email , "avatar":request.user.avatar})
+        return render(request , self.template_name , {'form': form})
+
+    def post(self, request):
+        form = self.form_class(request.POST , request.FILES , instance = request.user)
+        if form.is_valid():
+            form.save()
+            request.user.full_name = form.cleaned_data['full_name']
+            request.user.email = form.cleaned_data['email']
+            request.user.save()
+            messages.success(request , "پروفایل شما با موفقیت عوض شد" , 'success')
+        return redirect("account:user_profile")

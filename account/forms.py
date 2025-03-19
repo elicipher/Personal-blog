@@ -66,6 +66,25 @@ class UserLoginForm(forms.Form):
         self.user = user  # کاربر معتبر را ذخیره می‌کنیم تا در ویو استفاده شود
         
         return cd
+    
+class EditProfileForm(forms.ModelForm):
+    class Meta:
+        model = Member
+        fields = ('avatar','full_name','username','email',)
+        widgets = {
+            'username': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'نام کاربری'}),
+            'email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'ایمیل'}),
+            'full_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'نام و نام خانوادگی'}),
+            
+        }
+        labels = {
+            'username': ':نام کاربری ',
+            'email': ':ایمیل',
+            'full_name':  ':نام',
+            'avatar': ' :تصویر پروفایل',
+        }
+
+    
 
 
         
