@@ -28,10 +28,9 @@ class RegisterView(View):
         if form.is_valid():
             cd = form.cleaned_data
             full_name = cd.get('full_name')
-            user_name = cd.get("user_name")
             email = cd.get('email')
             password = cd.get('password')
-            new_member = Member(full_name=full_name , username = user_name , email = email )
+            new_member = Member(full_name=full_name , email = email )
             new_member.set_password(password)
             new_member.save()
             login(self.request,new_member)

@@ -53,7 +53,7 @@
     <div class="navbar">
         <h3>نام سایت</h3>
     </div>
-    
+    {% include 'include/massages.html' %}
     <div class="profile-card">
         {% if request.user.avatar  %}
         <img src="{{ request.user.avatar.url }}" style="width: 200px; height: 200px;"" >
@@ -76,11 +76,7 @@
                 <label class="form-label">{{ form.full_name.label }}</label>
                 {{ form.full_name }}
             </div>
-            
-            <div class="mb-2 text-end">
-                <label class="form-label">{{ form.username.label }}</label>
-                {{ form.username }}
-            </div>
+
             <div class="mb-2 text-end">
                 <label class="form-label">{{ form.email.label }}</label>
                 {{ form.email }}

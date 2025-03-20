@@ -7,10 +7,10 @@ class Member(AbstractUser):
 
     full_name = models.CharField(max_length=200)
     avatar = models.ImageField(upload_to="avatar/" , blank=True , null=True , verbose_name='تصویر پروفایل')
-    created_at = models.DateTimeField(auto_now_add=True , verbose_name='تاریخ عضویت')
+
 
     def __str__(self):
-        return self.username
+        return self.full_name
     
     class Meta:
         verbose_name  = "کاربر"
