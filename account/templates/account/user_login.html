@@ -18,9 +18,11 @@
     {{form.password}}
     
 </div>
+{% include 'include/massages.html' %}
 <button class="submit-btn">ورود</button>
 <div class="footer">
     <p>حساب کاربری ندارید ؟<a href="{% url 'account:user_register' %}">ثبت نام</a></p>
+    <p>رمز عبورتان را فراموش کردید ؟ <a href="{% url 'account:forget_password' %}">فراموشی رمز عبور</a></p>
 </div>
 </form>
 

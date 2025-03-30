@@ -6,7 +6,7 @@
 {% block content %}
 <h2>ثبت نام</h2>
     <p>لطفاً اطلاعات خود را وارد کنید.</p>
-<form method="post">
+<form method="post" action="{% url 'account:user_register' %}">
     {% csrf_token %}
     <div class="col-12">
         {{ form.full_name }}
