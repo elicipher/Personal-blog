@@ -40,43 +40,30 @@
         <section class="blogs blog-list pt-100 pb-50" data-scroll-index="4">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-4 col-md-6">
-                        <!--Blogs Item-->
-                        <div class="blog-item">
-                            <div class="blog-img">
-                                <a href="{% url 'blog:post_detail' %}">
-                                    <img src="{{STATIC_PATH}}images/blog/img-1.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="blog-content">
-                                <h3>لورم ایپسوم متن ساختگی با تولید سادگی </h3>
-                                <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است </p>
-                                <div class="blog-meta">
-                                    <span class="more">
-                                        <a href="{% url 'blog:post_detail' %}">مطالعه بیشتر</a>
-                                    </span>
-                                    <span class="date">
-                                        22 مرداد 1400
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
+                    {% for post in posts %}
                     <div class="col-lg-4 col-md-6">
-                        <!--Blogs Item-->
+                        <!-- Blogs Item -->
                         <div class="blog-item">
                             <div class="blog-img">
-                                <a href="{% url 'blog:post_detail' %}">
-                                    <img src="{{STATIC_PATH}}images/blog/img-2.jpg" alt="">
+                                <a href="{% url 'blog:post_detail' post.slug %}">
+                                    <img src="{{ post.image.url }}" alt="">
                                 </a>
                             </div>
                             <div class="blog-content">
-                                <h3>لورم ایپسوم متن ساختگی با تولید سادگی </h3>
-                                <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است </p>
+                                <h3>{{ post.title }}</h3>
+                                <p>{{ post.description|truncatechars:100 }}</p>
                                 <div class="blog-meta">
                                     <span class="more">
-                                        <a href="{% url 'blog:post_detail' %}">مطالعه بیشتر</a>
+                                        <a href="{% url 'blog:post_detail' post.slug %}">مطالعه بیشتر</a>
+                                    </span>
+                                </div>
+                                <div class="blog-meta">
+                                    <span class="likes">
+                                        <i class="fa fa-thumbs-up"></i> {{ post.likes }} لایک
+                                    </span>
+                                    <span class="views">
+                                        <i class="fa fa-eye"></i> {{ post.views }} بازدید
                                     </span>
                                     <span class="date">
                                         22 مرداد 1400
@@ -85,99 +72,10 @@
                             </div>
                         </div>
                     </div>
-
-                    <div class="col-lg-4 col-md-6">
-                        <!--Blogs Item-->
-                        <div class="blog-item">
-                            <div class="blog-img">
-                                <a href="{% url 'blog:post_detail' %}">
-                                    <img src="{{STATIC_PATH}}images/blog/img-3.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="blog-content">
-                                <h3>لورم ایپسوم متن ساختگی با تولید سادگی </h3>
-                                <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است </p>
-                                <div class="blog-meta">
-                                    <span class="more">
-                                        <a href="{% url 'blog:post_detail' %}">مطالعه بیشتر</a>
-                                    </span>
-                                    <span class="date">
-                                        22 مرداد 1400
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <!--Blogs Item-->
-                        <div class="blog-item">
-                            <div class="blog-img">
-                                <a href="{% url 'blog:post_detail' %}">
-                                    <img src="{{STATIC_PATH}}images/blog/img-4.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="blog-content">
-                                <h3>لورم ایپسوم متن ساختگی با تولید سادگی </h3>
-                                <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است </p>
-                                <div class="blog-meta">
-                                    <span class="more">
-                                        <a href="{% url 'blog:post_detail' %}">مطالعه بیشتر</a>
-                                    </span>
-                                    <span class="date">
-                                        22 مرداد 1400
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6">
-                        <!--Blogs Item-->
-                        <div class="blog-item">
-                            <div class="blog-img">
-                                <a href="{% url 'blog:post_detail' %}">
-                                    <img src="{{STATIC_PATH}}images/blog/img-5.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="blog-content">
-                                <h3>لورم ایپسوم متن ساختگی با تولید سادگی </h3>
-                                <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است </p>
-                                <div class="blog-meta">
-                                    <span class="more">
-                                        <a href="{% url 'blog:post_detail' %}">مطالعه بیشتر</a>
-                                    </span>
-                                    <span class="date">
-                                        22 مرداد 1400
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6">
-                        <!--Blogs Item-->
-                        <div class="blog-item">
-                            <div class="blog-img">
-                                <a href="{% url 'blog:post_detail' %}">
-                                    <img src="{{STATIC_PATH}}images/blog/img-6.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="blog-content">
-                                <h3>لورم ایپسوم متن ساختگی با تولید سادگی </h3>
-                                <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است </p>
-                                <div class="blog-meta">
-                                    <span class="more">
-                                        <a href="{% url 'blog:post_detail' %}">مطالعه بیشتر</a>
-                                    </span>
-                                    <span class="date">
-                                        22 مرداد 1400
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                    
+                    
+                    {% endfor %}
+                   
         </section>
         <!--Blog List Section End-->
 

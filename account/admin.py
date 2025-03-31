@@ -9,3 +9,6 @@ class MemberAdmin(admin.ModelAdmin):
     ordering = ("-date_joined",)
 
     
+
+
+    

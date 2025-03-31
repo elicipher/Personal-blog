@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'home.apps.HomeConfig',
     'blog.apps.BlogConfig',
     'account.apps.AccountConfig',
+    "django_prose_editor",
+    
 ]
 
 MIDDLEWARE = [
@@ -135,7 +137,9 @@ STATICFILES_DIRS = [
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'account.Member'
-AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.ModelBackend']
+AUTHENTICATION_BACKENDS = [
+    'account.authentication.backends.EmailBackend',
+    'django.contrib.auth.backends.ModelBackend']
 
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
@@ -145,3 +149,5 @@ EMAIL_PORT = 587
 EMAIL_HOST_PASSWORD = 'pzhrnbrhsuxisrzu'
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = 'Eli Cipher website'
+
+ALLOW_UNICODE_SLUGS = True

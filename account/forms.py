@@ -48,7 +48,7 @@ class UserLoginForm(forms.Form):
         cd = super().clean()
         email = cd.get("email")
         password= cd.get("password")
-        user = authenticate(email = email , password =password )
+        user = authenticate(username = email , password =password )
        
         if not password or not email  :
             raise ValidationError("لطفا فرم را پر کنید")
