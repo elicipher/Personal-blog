@@ -1,9 +1,9 @@
-from django.urls import path 
+from django.urls import path , re_path
 from .views import BlogView, PostDetailView
 
 app_name ='blog'
 urlpatterns = [
     path('blog/',BlogView.as_view(), name='blog'),
-    path('post-detail/<slug:slug>/',PostDetailView.as_view(), name='post_detail')
+    re_path(r'^post-detail/(?P<slug>[-\wآ-ی]+)/$',PostDetailView.as_view(), name='post_detail')
    
 ]

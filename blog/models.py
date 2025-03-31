@@ -28,11 +28,13 @@ class Post(models.Model):
         verbose_name = "پست"
         verbose_name_plural = "پست ها"
         
+
+
     def save(self, *args, **kwargs):
-        # تنظیم خودکار slug بر اساس title
         if not self.slug:
-            self.slug = slugify(self.title, allow_unicode=True)
+            self.slug = slugify(self.title, separator='-', lowercase=False, allow_unicode=True)
         super().save(*args, **kwargs)
+
     
     def __str__(self):
         return self.title
