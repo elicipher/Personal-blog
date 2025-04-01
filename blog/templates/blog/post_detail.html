@@ -3,9 +3,7 @@
     <body>
 
         <!--Preloader Start-->
-        <div class="preloader">
-            <div class="loader "></div>
-        </div>
+
         <!--Preloader End-->
 
         <!--Navbar Start-->
@@ -45,25 +43,52 @@
                     <div class="col-lg-8 offset-lg-2">
                         <!--Blog Image-->
                         <div class="blog-image">
-                            <img src="{{STATIC_PATH}}images/blog/blog-big.jpg" alt="">
+                            <img src="{{post.image.url}}" alt="">
                         </div>
                         <!--Blog Heading-->
                         <div class="blog-heading">
-                            <h2>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم </h2>
+                            <h2>{{post.title}}</h2>
                             <div class="blog-meta">
-                                <span class="date">22 مرداد 1400</span>
+                                <span class="date">{{post.publish}}</span>
                                 <span class="by">توسط نت کپی</span>
                             </div>
                         </div>
                         <!--Blog Content-->
                         <div class="blog-content">
-                            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد </p>
-                            <br>
-                            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز </p>
-                            <blockquote>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز </blockquote>
-                            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد </p>
+                            <p>{{post.description|linebreaks}}</p>
                         </div>
+                        
+                        <div class="blog-meta">
+                           <!-- دکمه لایک -->
+                           <form id="like-form" action="{% url 'blog:post_like' post.slug post.id %}" method="post" style="display:inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="heart-button">
+                                <img id="like-icon" class="heart-icon" 
+                                     src="{{ STATIC_PATH }}images/like/{% if has_liked %}Like.png{% else %}unlike.png{% endif %}" 
+                                     alt="heart">
+                                <span id="like-text" class="like-text">
+                                    {% if has_liked %}
+                                        لایک شده
+                                    {% else %}
+                                        لایک
+                                    {% endif %}
+                                </span>
+                                <span id="like-count" class="like-count">{{ post.like_count }}</span>
+                            </button>
+                        </form>
+                        
+   
+                        
+                       
+                        
+                            <span class="views">
+                                <i class="fa fa-eye"></i> {{ post.views }} بازدید
+                            </span>
+                        </div>
+                        <br>
+                        <br>
                         <div class="col-md-12">
+                            {% include 'include/massages.html' %}
                             <!--Blog Comments-->
                             <h3 class="comment-title">نظرات</h3>
                             <ul class="post-comment">
@@ -121,5 +146,40 @@
                 </div>
             </div>
         </section>
+        <script>
+            document.querySelector('#like-form').addEventListener('submit', function(event) {
+                event.preventDefault(); // جلوگیری از رفرش
+        
+                const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+                const url = this.action;
+        
+                fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRFToken': csrfToken,
+                        'X-Requested-With': 'XMLHttpRequest' // بسیار مهم برای شناسایی AJAX
+                    }
+                })
+                .then(response => {
+                    if (!response.ok) throw new Error("خطا در درخواست");
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.has_liked) {
+                        document.getElementById('like-icon').src = "{{ STATIC_PATH }}images/like/Like.png";
+                        document.getElementById('like-text').textContent = "لایک شده";
+                    } else {
+                        document.getElementById('like-icon').src = "{{ STATIC_PATH }}images/like/unlike.png";
+                        document.getElementById('like-text').textContent = "لایک";
+                    }
+        
+                    document.getElementById('like-count').textContent = data.like_count;
+                })
+                .catch(error => console.error('خطا در درخواست:', error));
+            });
+        </script>
+        
+        
+        
 {% endblock %}
 

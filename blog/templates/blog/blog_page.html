@@ -46,7 +46,7 @@
                         <!-- Blogs Item -->
                         <div class="blog-item">
                             <div class="blog-img">
-                                <a href="{% url 'blog:post_detail' post.slug %}">
+                                <a href="{% url 'blog:post_detail' post.slug post.id %}">
                                     <img src="{{ post.image.url }}" alt="">
                                 </a>
                             </div>
@@ -55,7 +55,7 @@
                                 <p>{{ post.description|truncatechars:100 }}</p>
                                 <div class="blog-meta">
                                     <span class="more">
-                                        <a href="{% url 'blog:post_detail' post.slug %}">مطالعه بیشتر</a>
+                                        <a href="{% url 'blog:post_detail' post.slug post.id %}">مطالعه بیشتر</a>
                                     </span>
                                 </div>
                                 <div class="blog-meta">
