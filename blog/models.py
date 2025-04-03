@@ -3,6 +3,7 @@ from django.utils import timezone
 from account.models import Member
 from django_prose_editor.fields import ProseEditorField
 from slugify import slugify
+from utils.date_utils import time_Converter
 
 
 # Create your models here.
@@ -36,6 +37,9 @@ class Post(models.Model):
         if not self.slug:
             self.slug = slugify(self.title, separator='-', lowercase=False, allow_unicode=True)
         super().save(*args, **kwargs)
+
+    def jpublish(self):
+        return time_Converter(self.publish)
 
 
 
@@ -87,3 +91,6 @@ class Comment(models.Model):
     
     def is_reply(self):
         return self.replay is not None
+    
+    def jpublish(self):
+        return time_Converter(self.created)
