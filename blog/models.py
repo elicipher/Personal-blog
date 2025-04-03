@@ -17,8 +17,6 @@ class Post(models.Model):
     slug = models.SlugField(max_length=100 ,unique=True,blank=True, allow_unicode=True, verbose_name='آدرس')
     image = models.ImageField(upload_to='Post_Images/' , blank=True , null=True , verbose_name="تصویر پست")
     description = ProseEditorField(verbose_name='محتوای مقاله')
-    like = models.PositiveIntegerField(default=0 , verbose_name="لایک")
-    view = models.PositiveIntegerField(default=0 , verbose_name="بازدید")
     publish = models.DateTimeField(default=timezone.now , verbose_name="زمان انتشار" )
     created = models.DateField(auto_now_add=True , verbose_name='تاریخ ساخت')
     updated = models.DateField(auto_now=True , verbose_name='تاریخ بروز رسانی')
@@ -30,11 +28,16 @@ class Post(models.Model):
         
     def like_count(self):
         return self.post_like.count()
+    
+    def view_count(self):
+        return self.views.count()
 
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.title, separator='-', lowercase=False, allow_unicode=True)
         super().save(*args, **kwargs)
+
+
 
     
     def __str__(self):
@@ -53,6 +56,18 @@ class Like(models.Model):
     
     def __str__(self):
         return f"{self.user} لایک {self.post.title}"
+    
+class PostViews(models.Model):
+    post = models.ForeignKey(Post , on_delete=models.CASCADE , related_name='views')
+    ip_address = models.GenericIPAddressField()
+    timestamp = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return f'بازدید از {self.post.title} از آدرس {self.ip_address}'
+    
+
+
+
 
     
 class Comment(models.Model):

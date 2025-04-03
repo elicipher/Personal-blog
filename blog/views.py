@@ -1,8 +1,8 @@
 from django.shortcuts import render , get_object_or_404 , redirect
 from django.views import View
-from .models import Post , Like
+from .models import Post , Like , PostViews
 from django.contrib import messages
-from django.http import JsonResponse, HttpResponseBadRequest
+from django.http import JsonResponse, HttpResponseBadRequest , HttpResponse
 
 
 # Create your views here.
@@ -20,7 +20,9 @@ class PostDetailView(View):
         post = get_object_or_404(Post, id=id)
         user = request.user
         has_liked = False
-
+        ip_address = request.META.get('REMOTE_ADDR')
+        if not PostViews.objects.filter(post=post ,ip_address = ip_address).exists():
+            PostViews.objects.create(post=post, ip_address=ip_address)
         # بررسی وضعیت لایک
         if user.is_authenticated:
             has_liked = post.post_like.filter(user=user).exists()
@@ -88,6 +90,10 @@ class LikePostView(View):
         response.set_cookie('guest_id', guest_id)  # اعتبار یک ساله
 
         return response
+
+
+
+
 
 
 
