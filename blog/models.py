@@ -50,13 +50,12 @@ class Post(models.Model):
 class Like(models.Model):
     post = models.ForeignKey(Post , on_delete= models.CASCADE , related_name='post_like' ) 
     user = models.ForeignKey(Member , on_delete= models.CASCADE , blank= True , null= True , related_name='liked_post' , verbose_name='کاربر') 
-    session_key = models.CharField(max_length=40 )  # برای شناسایی کاربران مهمان
     created_at = models.DateTimeField(auto_now_add=True)  
 
     class Meta:
         verbose_name = "لایک"
         verbose_name_plural = " لایک ها"
-        unique_together = ('post', 'session_key', 'user')  # جلوگیری از لایک چندباره
+    
     
     def __str__(self):
         return f"{self.user} لایک {self.post.title}"

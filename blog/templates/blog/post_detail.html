@@ -62,7 +62,7 @@
                            <!-- دکمه لایک -->
                            <form id="like-form" action="{% url 'blog:post_like' post.slug post.id %}" method="post" style="display:inline;">
                             {% csrf_token %}
-                            <button type="submit" class="heart-button">
+                            <button type="submit" class="heart-button" id="like-button">
                                 <img id="like-icon" class="heart-icon" 
                                      src="{{ STATIC_PATH }}images/like/{% if has_liked %}Like.png{% else %}unlike.png{% endif %}" 
                                      alt="heart">
@@ -73,14 +73,52 @@
                                         لایک
                                     {% endif %}
                                 </span>
-                                <span id="like-count" class="like-count">{{ post.like_count }}</span>
+                                <span id="like-count" class="like-count">{{ like_count }}</span>
                             </button>
                         </form>
                         
-   
+                        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
                         
-                       
+                        <script>
+                            $(document).ready(function() {
+                                $('#like-button').click(function(event) {
+                                    event.preventDefault();  // از ارسال فرم جلوگیری می‌کند
                         
+                                    var form = $(this).closest('form');
+                                    var url = form.attr('action');
+                                    var csrfToken = form.find('[name=csrfmiddlewaretoken]').val();
+                        
+                                    $.ajax({
+                                        url: url,
+                                        type: 'POST',
+                                        data: {
+                                            'csrfmiddlewaretoken': csrfToken
+                                        },
+                                        success: function(response) {
+                                            if (response.status === 'liked') {
+                                                $('#like-icon').attr('src', '{{ STATIC_PATH }}images/like/Like.png');
+                                                $('#like-text').text('لایک شده');
+                                            } else if (response.status === 'unliked') {
+                                                $('#like-icon').attr('src', '{{ STATIC_PATH }}images/like/unlike.png');
+                                                $('#like-text').text('لایک');
+                                            }
+                                            $('#like-count').text(response.like_count);  // بروزرسانی تعداد لایک‌ها
+                        
+                                            // اگر کاربر لاگین نباشه، ریدایرکت به صفحه لاگین و سپس به صفحه پست
+                                            if (response.status === 'unauthenticated') {
+                                                window.location.href = response.login_url + "?next=" + response.next_url;
+                                            }
+                                        },
+                                        error: function() {
+                                            alert("خطایی رخ داده است. لطفا دوباره امتحان کنید.");
+                                        }
+                                    });
+                                });
+                            });
+                        </script>
+                        
+                        
+
                             <span class="views">
                                 <i class="fa fa-eye"></i>  {{ post.view_count }} بازدید
                             </span>
@@ -145,39 +183,8 @@
                     </div>
                 </div>
             </div>
-        </section>
-        <script>
-            document.querySelector('#like-form').addEventListener('submit', function(event) {
-                event.preventDefault(); // جلوگیری از رفرش
-        
-                const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
-                const url = this.action;
-        
-                fetch(url, {
-                    method: 'POST',
-                    headers: {
-                        'X-CSRFToken': csrfToken,
-                        'X-Requested-With': 'XMLHttpRequest' // بسیار مهم برای شناسایی AJAX
-                    }
-                })
-                .then(response => {
-                    if (!response.ok) throw new Error("خطا در درخواست");
-                    return response.json();
-                })
-                .then(data => {
-                    if (data.has_liked) {
-                        document.getElementById('like-icon').src = "{{ STATIC_PATH }}images/like/Like.png";
-                        document.getElementById('like-text').textContent = "لایک شده";
-                    } else {
-                        document.getElementById('like-icon').src = "{{ STATIC_PATH }}images/like/unlike.png";
-                        document.getElementById('like-text').textContent = "لایک";
-                    }
-        
-                    document.getElementById('like-count').textContent = data.like_count;
-                })
-                .catch(error => console.error('خطا در درخواست:', error));
-            });
-        </script>
+    
+
         
         
         

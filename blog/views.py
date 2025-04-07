@@ -1,8 +1,10 @@
 from django.shortcuts import render , get_object_or_404 , redirect
 from django.views import View
 from .models import Post , Like , PostViews
-from django.contrib import messages
-from django.http import JsonResponse, HttpResponseBadRequest , HttpResponse
+from django.urls import reverse
+from django.http import JsonResponse
+
+
 
 
 # Create your views here.
@@ -16,80 +18,45 @@ class BlogView(View):
 
 class PostDetailView(View):
 
+
     def get(self, request, slug, id):
-        post = get_object_or_404(Post, id=id)
+        post = get_object_or_404(Post, id=id , slug = slug)
         user = request.user
-        has_liked = False
+        has_liked = False #مقدار پیش فرض 
         ip_address = request.META.get('REMOTE_ADDR')
         if not PostViews.objects.filter(post=post ,ip_address = ip_address).exists():
             PostViews.objects.create(post=post, ip_address=ip_address)
-        # بررسی وضعیت لایک
-        if user.is_authenticated:
-            has_liked = post.post_like.filter(user=user).exists()
-        else:
-            session_key = request.session.session_key
-            if not session_key:
-                request.session.create()
-                session_key = request.session.session_key
+        if user.is_authenticated :
+            if Like.objects.filter(user = user , post = post).exists():
+                has_liked = True
+            
+            
 
-            has_liked = post.post_like.filter(session_key=session_key).exists()
-
-        context = {
-            'post': post,
-            'has_liked': has_liked,
-        }
-        return render(request, 'blog/post_detail.html', context)
+        return render(request, 'blog/post_detail.html',{'post': post , 'has_liked':has_liked , 'like_count':post.like_count()})
 
 
-import uuid
-from django.views import View
-from django.http import JsonResponse, HttpResponseBadRequest
-from django.shortcuts import get_object_or_404
+
 
 class LikePostView(View):
 
     def post(self, request, slug, id):
-        post = get_object_or_404(Post, id=id)
+        post = get_object_or_404(Post, id=id, slug=slug)
+        user = request.user
+        
+        if not user.is_authenticated:
+           
+            next_url = reverse('blog:post_detail', kwargs={'slug': slug, 'id': id})
+            login_url = reverse("account:user_login")  # مسیر لاگین
+            return JsonResponse({'status': 'unauthenticated', 'login_url': login_url, 'next_url': next_url})
+            
+        like, created = Like.objects.get_or_create(user=user, post=post)
+        if not created:
+            like.delete()
+            return JsonResponse({'status': 'unliked', 'like_count':post.like_count()})
+        
+        return JsonResponse({'status': 'liked', 'like_count':post.like_count() })
 
-        # ایجاد guest_id در کوکی در صورت نبود
-        guest_id = request.COOKIES.get('guest_id')
-        if not guest_id:
-            guest_id = str(uuid.uuid4())  # شناسه یکتا برای مهمان
-            request.session['guest_id'] = guest_id
-
-        has_liked = False  # مقدار پیش‌فرض
-
-        # بررسی درخواست AJAX
-        if request.headers.get('X-Requested-With') != 'XMLHttpRequest':
-            return HttpResponseBadRequest("Invalid request")
-
-        # مهمان
-        if not request.user.is_authenticated:
-            if Like.objects.filter(post=post, session_key=guest_id).exists():
-                Like.objects.filter(post=post, session_key=guest_id).delete()
-                has_liked = False
-            else:
-                Like.objects.create(post=post, session_key=guest_id)
-                has_liked = True
-
-        # کاربر لاگین کرده
-        else:
-            user = request.user
-            if Like.objects.filter(post=post, user=user).exists():
-                Like.objects.filter(post=post, user=user).delete()
-                has_liked = False
-            else:
-                Like.objects.create(post=post, user=user)
-                has_liked = True
-
-        # محاسبه تعداد لایک
-        like_count = Like.objects.filter(post=post).count()
-
-        # تنظیم کوکی برای مهمان
-        response = JsonResponse({'has_liked': has_liked, 'like_count': like_count})
-        response.set_cookie('guest_id', guest_id)  # اعتبار یک ساله
-
-        return response
+     
 
 
 

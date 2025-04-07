@@ -45,7 +45,7 @@ class RegisterView(View):
 
 class LoginView(View):
     def setup(self, request, *args, **kwargs):
-        self.next = request.GET.get('next')
+        self.next = request.GET.get('next', '/')
         return super().setup(request, *args, **kwargs)
     
 
