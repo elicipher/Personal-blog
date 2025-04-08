@@ -1,6 +1,6 @@
 from django.shortcuts import render , get_object_or_404 , redirect
 from django.views import View
-from .models import Post , Like , PostViews
+from .models import Post , Like , PostVisit
 from django.urls import reverse
 from django.http import JsonResponse
 
@@ -23,9 +23,9 @@ class PostDetailView(View):
         post = get_object_or_404(Post, id=id , slug = slug)
         user = request.user
         has_liked = False #مقدار پیش فرض 
-        ip_address = request.META.get('REMOTE_ADDR')
-        if not PostViews.objects.filter(post=post ,ip_address = ip_address).exists():
-            PostViews.objects.create(post=post, ip_address=ip_address)
+        ip_address = request.META.get('X-Forwarded-For')
+        if not PostVisit.objects.filter(post=post ,ip_address = ip_address).exists():
+            PostVisit.objects.create(post=post, ip_address=ip_address)
         if user.is_authenticated :
             if Like.objects.filter(user = user , post = post).exists():
                 has_liked = True
