@@ -60,9 +60,9 @@ class Like(models.Model):
     def __str__(self):
         return f"{self.user} لایک {self.post.title}"
     
-class PostViews(models.Model):
+class PostVisit(models.Model):
     post = models.ForeignKey(Post , on_delete=models.CASCADE , related_name='views')
-    ip_address = models.GenericIPAddressField()
+    ip_address = models.GenericIPAddressField(null=True , blank= True)
     timestamp = models.DateTimeField(default=timezone.now)
 
     def __str__(self):

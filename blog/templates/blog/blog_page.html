@@ -47,12 +47,14 @@
                         <div class="blog-item">
                             <div class="blog-img">
                                 <a href="{% url 'blog:post_detail' post.slug post.id %}">
+                                    {% if post.image %}
                                     <img src="{{ post.image.url }}" alt="">
+                                    {% endif %}
                                 </a>
                             </div>
                             <div class="blog-content">
                                 <h3>{{ post.title }}</h3>
-                                <p>{{ post.description|truncatechars:100 }}</p>
+                                <p>{{ post.description|truncatechars:50|safe }}</p>
                                 <div class="blog-meta">
                                     <span class="more">
                                         <a href="{% url 'blog:post_detail' post.slug post.id %}">مطالعه بیشتر</a>

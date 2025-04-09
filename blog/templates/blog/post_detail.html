@@ -43,7 +43,9 @@
                     <div class="col-lg-8 offset-lg-2">
                         <!--Blog Image-->
                         <div class="blog-image">
+                            {% if post.image %}
                             <img src="{{post.image.url}}" alt="">
+                            {% endif %}
                         </div>
                         <!--Blog Heading-->
                         <div class="blog-heading">
@@ -55,7 +57,7 @@
                         </div>
                         <!--Blog Content-->
                         <div class="blog-content">
-                            <p>{{post.description|linebreaks}}</p>
+                            <p>{{post.description|safe}}</p>
                         </div>
                         
                         <div class="blog-meta">
