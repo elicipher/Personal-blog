@@ -1615,3 +1615,54 @@ section.banner-blog .banner-caption h1 {
  .owl-carousel{
     direction: ltr !important;
    }
+.reply-comment {
+    margin-top: 15px;
+    padding: 10px;
+    border-left: 2px solid #ddd;
+    background-color: #f1f1f1;
+    font-size: 0.9em;
+}
+
+.reply-comment .comment-info {
+    margin-left: 40px;
+}
+
+.reply-comment img {
+    width: 40px;
+    height: 40px;
+}
+
+.reply-comment h3 {
+    font-size: 1em;
+    font-weight: bold;
+}
+
+.reply-comment p {
+    font-size: 0.9em;
+}
+
+.reply-form {
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+}
+
+textarea {
+    width: 100%;
+    height: 100px;
+    margin-bottom: 10px;
+}
+
+button {
+    padding: 5px 15px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+

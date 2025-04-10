@@ -13,7 +13,7 @@ def time_Converter(time):
             time_to_list[1] = mounth
             break
 
-    output = "{} {} {}".format(
+    output = "{} {} {}  - {:02d}:{:02d}".format(
         time_to_list[0],
         time_to_list[1],
         time_to_list[2],
@@ -21,4 +21,5 @@ def time_Converter(time):
         time.minute,
         
     )
+    
     return output

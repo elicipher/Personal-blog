@@ -40,6 +40,9 @@ class Post(models.Model):
 
     def jpublish(self):
         return time_Converter(self.publish)
+    jpublish.short_description = 'زمان انتشار'
+    view_count.short_description = 'تعداد بازدید'
+    like_count.short_description = 'تعداد لایک'
 
 
 
@@ -77,19 +80,21 @@ class Comment(models.Model):
 
     post = models.ForeignKey(Post , on_delete= models.CASCADE , related_name="postcomment" , verbose_name='پست')
     user = models.ForeignKey(Member , on_delete=models.CASCADE , related_name='usercomment' , verbose_name='کاربر')
-    content = ProseEditorField(max_length=500,verbose_name="متن کامنت")
+    content = models.TextField(max_length=500,verbose_name="متن کامنت")
+    confirme = models.BooleanField(default=False , verbose_name='تایید شده')
     created = models.DateTimeField(auto_now_add=True , verbose_name='تاریخ ارسال')
-    
-    replay = models.ForeignKey('self',on_delete=models.CASCADE , related_name='replies', verbose_name='پاسخ' )
+    replay = models.ForeignKey('self',on_delete=models.CASCADE , related_name='replies', verbose_name='پاسخ', null=True , blank=True )
 
     class Meta():
         verbose_name = "نظر"
         verbose_name_plural = "نظرات" 
     def __str__(self):
-        return f'کامنت {self.user}  روی {self.post}'
+        return f'کامنت {self.user}  روی "{self.post}"'
     
     def is_reply(self):
         return self.replay is not None
     
     def jpublish(self):
         return time_Converter(self.created)
+    
+    jpublish.short_description = "تاریخ انتشار"

@@ -51,7 +51,7 @@
                         <div class="blog-heading">
                             <h2>{{post.title}}</h2>
                             <div class="blog-meta">
-                                <span class="date">{{post.publish}}</span>
+                                <span class="date">{{post.jpublish}}</span>
                                 <span class="by">توسط نت کپی</span>
                             </div>
                         </div>
@@ -131,52 +131,78 @@
                             {% include 'include/massages.html' %}
                             <!--Blog Comments-->
                             <h3 class="comment-title">نظرات</h3>
+                            {% for comen in comment %}
                             <ul class="post-comment">
+                           
                                 <li>
-                                    <img src="{{STATIC_PATH}}images/comment-authors/img-1.jpg" alt="">
+                                    {% if comen.user.avatar %}
+                                    <img src="{{comen.user.avatar.url}}" alt="">
+                                    {% else %}
+                                    <img src="{{STATIC_PATH}}images/comment-authors/profile.jpg" alt="">
+                                    {% endif %}
                                     <div class="comment-info">
-                                        <h3>آدام همتی</h3>
-                                        <a href="#">پاسخ</a>
-                                        <span>22 مرداد 1400 15:40</span>
-                                        <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است </p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <img src="{{STATIC_PATH}}images/comment-authors/img-2.jpg" alt="">
-                                    <div class="comment-info">
-                                          <h3>آدام همتی</h3>
-                                          <a href="#">پاسخ</a>
-                                          <span>22 مرداد 1400 15:40</span>
-                                        <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است </p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <img src="{{STATIC_PATH}}images/comment-authors/img-3.jpg" alt="">
-                                    <div class="comment-info">
-                                          <h3>آدام همتی</h3>
-                                          <a href="#">پاسخ</a>
-                                          <span>22 مرداد 1400 15:40</span>
-                                        <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است </p>
+                                        <h3>{{comen.user.full_name}}</h3>
+                                        <a href="#" class="reply-link">پاسخ</a>
+                                        <span>{{comen.jpublish}}</span>
+                                        <p>{{comen.content}}</p>
+                            
+                                        <!-- فرم پاسخ مخفی: زیر کامنت اصلی -->
+                                        <div class="reply-form" style="display: none;">
+                                            <textarea placeholder="پاسخ خود را بنویسید..."></textarea>
+                                            <button type="submit">ارسال</button>
+                                        </div>
+                                        
+                                        <!-- ریپلای (پاسخ کوچک) همیشه نمایش داده می‌شود -->
+                                        
+                                        <div class="reply-comment">
+                                            <ul>
+                                                <li>
+                                                    <img src="{{STATIC_PATH}}images/comment-authors/img-3.jpg" alt="">
+                                                    <div class="comment-info">
+                                                        <h3>اسم کاربر</h3>
+                                                        <span>تاریخ</span>
+                                                        <p>محتوا</p>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </div>
                                 </li>
                             </ul>
-                        </div>
+                          
+                            {% endfor %}
+                            
+  
+                             
+                                <script>
+document.querySelectorAll('.reply-link').forEach(link => {
+    link.addEventListener('click', function (e) {
+        e.preventDefault();
+        const comment = this.closest('.comment-info');
+        const form = comment.querySelector('.reply-form');
+
+        // بستن بقیه فرم‌ها
+        document.querySelectorAll('.reply-form').forEach(f => {
+            if (f !== form) f.style.display = 'none';
+        });
+
+        form.style.display = form.style.display === 'block' ? 'none' : 'block';
+    });
+});
+
+
+                                </script>
+                       
                         <!--Blog Comment Form-->
-                        <form class="col-md-12 contact-form" action="#">
+                        <form class="col-md-12 contact-form" method="post">
+                            {% csrf_token %}
                             <h3 class="comment-title">پاسخ دهید</h3>
                             <div class="row">
-                                <!--Name-->
-                                <div class="col-md-6">
-                                    <input class="form-inpt" type="text" required="required" placeholder="نام">
-                                </div>
-                                <!--Email-->
-                                <div class="col-md-6">
-                                    <input class="form-inpt" type="text" placeholder="ایمیل" required="required">
-                                </div>
                                 <!--Message-->
                                 <div class="col-md-12">
-                                    <textarea name="form-message" placeholder="نظر شما" rows="8"></textarea>
+                                    {{form.as_p}}
                                 </div>
+                           
                                 <div class="col-md-12 text-center pt-30">
                                     <input id="submit" class="main-btn" type="submit" value="ارسال نظر">
                                 </div>
@@ -185,6 +211,9 @@
                     </div>
                 </div>
             </div>
+            <br>
+            <br>
+            <br>
     
 
         

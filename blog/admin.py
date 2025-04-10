@@ -18,12 +18,24 @@ class LikeInline(admin.TabularInline):
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
-    list_display=('title','view_count',)
+    list_display=('title','view_count','like_count','jpublish', 'status')
     inlines = [LikeInline ,]
+
+
 
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
-    list_display=('post' , 'user',)
+    list_display=('post','user','jpublish','confirme',)
+    ordering = ('confirme','created',)
+    search_fields = ('post','user',)
+    readonly_fields = ('user_display',)
+    def user_display(self, obj):
+        if obj.user:
+            return obj.user.full_name
+  
+    
+        
+    
 
 
 
