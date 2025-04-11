@@ -52,7 +52,8 @@
                             <h2>{{post.title}}</h2>
                             <div class="blog-meta">
                                 <span class="date">{{post.jpublish}}</span>
-                                <span class="by">توسط نت کپی</span>
+                                <span class="by">توسط <b>💙{{post.author}}💙</b> </span>
+                                
                             </div>
                         </div>
                         <!--Blog Content-->
@@ -141,7 +142,14 @@
                                             <img src="{{STATIC_PATH}}images/comment-authors/profile.jpg" alt="">
                                         {% endif %}
                                         <div class="comment-info">
-                                            <h3>{{comen.user.full_name}}</h3>
+                                            <h3 style="display: flex; align-items: center; font-size: 16px; flex-direction: row-reverse;">
+                                                {{ comen.user.full_name }}
+                                                {% if comen.user.is_superuser %}
+                                                    <span class="badge badge-danger" style="font-size: 11px; font-weight: bold; margin-left: 8px; padding: 3px 12px; border-radius: 4px; background-color: #ff2378; color: white; text-transform: uppercase;">
+                                                        🌟 مدیر 🌟
+                                                    </span>
+                                                {% endif %}
+                                            </h3>
                                             <a href="#" class="reply-link">پاسخ</a>
                                             <span>{{comen.jpublish}}</span>
                                             <p>{{comen.content}}</p>
@@ -176,7 +184,14 @@
                                                                         <img src="{{STATIC_PATH}}images/comment-authors/profile.jpg" alt="">
                                                                     {% endif %}
                                                                     <div class="comment-info">
-                                                                        <h3>{{reply.user.full_name}}</h3>
+                                                                        <h3 style="display: flex; align-items: center; font-size: 16px; flex-direction: row-reverse;">
+                                                                            {{ reply.user.full_name }}
+                                                                            {% if reply.user.is_superuser %}
+                                                                                <span class="badge badge-danger" style="font-size: 11px; font-weight: bold; margin-left: 8px; padding: 3px 12px; border-radius: 4px; background-color: #ff2378; color: white; text-transform: uppercase;">
+                                                                                    🌟 مدیر 🌟
+                                                                                </span>
+                                                                            {% endif %}
+                                                                        </h3>
                                                                         <span>{{reply.jpublish}}</span>
                                                                         <p>{{reply.content}}</p>
                                                                     </div>

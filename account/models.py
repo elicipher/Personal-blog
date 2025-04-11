@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django_prose_editor.fields import ProseEditorField
+
 
 # Create your models here.
 
@@ -15,3 +17,8 @@ class Member(AbstractUser):
     class Meta:
         verbose_name  = "کاربر"
         verbose_name_plural = "کاربران"
+
+    
+
+
+    

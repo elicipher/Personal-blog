@@ -1712,3 +1712,11 @@ button:hover {
     color: #333;
     line-height: 1.5;
 }
+.badge {
+    display: inline-block;
+    padding: 1px 3px;
+    color: #fff;
+    background-color: #d9534f;
+    border-radius: 4px;
+    font-size: 10px;
+}

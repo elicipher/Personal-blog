@@ -22,6 +22,7 @@ class Post(models.Model):
     created = models.DateField(auto_now_add=True , verbose_name='تاریخ ساخت')
     updated = models.DateField(auto_now=True , verbose_name='تاریخ بروز رسانی')
     status = models.CharField(max_length=1 , choices=STATUS_CHOICES , verbose_name= "وضعیت")
+    author = models.ForeignKey(Member ,on_delete=models.CASCADE, related_name='post_author',verbose_name='نویسنده')
     
     class Meta():
         verbose_name = "پست"
@@ -85,6 +86,7 @@ class Comment(models.Model):
     created = models.DateTimeField(auto_now_add=True , verbose_name='تاریخ ارسال')
     reply = models.ForeignKey('self',on_delete=models.CASCADE , related_name='replies', verbose_name='پاسخ', null=True , blank=True )
     is_reply = models.BooleanField(default=False)
+
     class Meta():
         verbose_name = "نظر"
         verbose_name_plural = "نظرات" 
