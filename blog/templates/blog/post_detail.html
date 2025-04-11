@@ -131,46 +131,88 @@
                             {% include 'include/massages.html' %}
                             <!--Blog Comments-->
                             <h3 class="comment-title">نظرات</h3>
-                            {% for comen in comment %}
-                            <ul class="post-comment">
-                           
-                                <li>
-                                    {% if comen.user.avatar %}
-                                    <img src="{{comen.user.avatar.url}}" alt="">
-                                    {% else %}
-                                    <img src="{{STATIC_PATH}}images/comment-authors/profile.jpg" alt="">
-                                    {% endif %}
-                                    <div class="comment-info">
-                                        <h3>{{comen.user.full_name}}</h3>
-                                        <a href="#" class="reply-link">پاسخ</a>
-                                        <span>{{comen.jpublish}}</span>
-                                        <p>{{comen.content}}</p>
+                            {% if comment %}
+                                {% for comen in comment %}
+                                <ul class="post-comment">
+                                    <li>
+                                        {% if comen.user.avatar %}
+                                            <img src="{{comen.user.avatar.url}}" alt="">
+                                        {% else %}
+                                            <img src="{{STATIC_PATH}}images/comment-authors/profile.jpg" alt="">
+                                        {% endif %}
+                                        <div class="comment-info">
+                                            <h3>{{comen.user.full_name}}</h3>
+                                            <a href="#" class="reply-link">پاسخ</a>
+                                            <span>{{comen.jpublish}}</span>
+                                            <p>{{comen.content}}</p>
                             
-                                        <!-- فرم پاسخ مخفی: زیر کامنت اصلی -->
-                                        <div class="reply-form" style="display: none;">
-                                            <textarea placeholder="پاسخ خود را بنویسید..."></textarea>
-                                            <button type="submit">ارسال</button>
-                                        </div>
-                                        
-                                        <!-- ریپلای (پاسخ کوچک) همیشه نمایش داده می‌شود -->
-                                        
-                                        <div class="reply-comment">
-                                            <ul>
-                                                <li>
-                                                    <img src="{{STATIC_PATH}}images/comment-authors/img-3.jpg" alt="">
-                                                    <div class="comment-info">
-                                                        <h3>اسم کاربر</h3>
-                                                        <span>تاریخ</span>
-                                                        <p>محتوا</p>
+                                            <!-- فرم پاسخ مخفی: زیر کامنت اصلی -->
+                                            <div class="reply-form" style="display: none;">
+                                                <form class="col-md-12 contact-form" action="{% url 'blog:reply_comment' post.id comen.id %}" method="post">
+                                                    {% csrf_token %}
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            {{reply_form.as_p}}
+                                                        </div>
+                                                        <div class="col-md-12 text-center pt-30">
+                                                            <input id="submit" class="main-btn" type="submit" value="ارسال پاسخ">
+                                                        </div>
                                                     </div>
-                                                </li>
-                                            </ul>
+                                                </form>
+                                            </div>
+                            
+                                            <!-- دکمه نمایش پاسخ‌ها -->
+                                            {% with replies=comen.replies.all %}
+                                                {% if replies %}
+                                                    <button class="toggle-replies-btn  main-btn">👀 دیدن پاسخ‌ها</button>
+                                                    <div class="reply-comment" style="display: none;">
+                                                        <ul>
+                                                            {% for reply in replies %}
+                                                                {% if reply.confirme %}
+                                                                <li class="userphoto">
+                                                                    {% if reply.user.avatar %}
+                                                                        <img src="{{reply.user.avatar.url}}" alt="">
+                                                                    {% else %}
+                                                                        <img src="{{STATIC_PATH}}images/comment-authors/profile.jpg" alt="">
+                                                                    {% endif %}
+                                                                    <div class="comment-info">
+                                                                        <h3>{{reply.user.full_name}}</h3>
+                                                                        <span>{{reply.jpublish}}</span>
+                                                                        <p>{{reply.content}}</p>
+                                                                    </div>
+                                                                </li>
+                                                                {% endif %}
+                                                            {% endfor %}
+                                                        </ul>
+                                                    </div>
+                                                {% endif %}
+                                            {% endwith %}
                                         </div>
-                                    </div>
-                                </li>
-                            </ul>
-                          
-                            {% endfor %}
+                                    </li>
+                                </ul>
+                                {% endfor %}
+                            {% else %}
+                                <p>هی! هنوز هیچ کامنتی نیست. اولین نفر باش که نظر می‌ذاری! 😊</p>
+                            {% endif %}
+                            <script>
+                                document.addEventListener("DOMContentLoaded", function() {
+                                    const toggleButtons = document.querySelectorAll('.toggle-replies-btn');
+                                    toggleButtons.forEach(btn => {
+                                        btn.addEventListener('click', function() {
+                                            const replyBox = this.nextElementSibling;
+                                            if (replyBox.style.display === "none" || replyBox.style.display === "") {
+                                                replyBox.style.display = "block";
+                                                this.textContent = "❌ بستن پاسخ‌ها";
+                                            } else {
+                                                replyBox.style.display = "none";
+                                                this.textContent = "👀 دیدن پاسخ‌ها";
+                                            }
+                                        });
+                                    });
+                                });
+                            </script>
+                                                        
+                                                        
                             
   
                              

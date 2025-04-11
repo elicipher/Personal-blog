@@ -1,9 +1,9 @@
 from django.shortcuts import render , get_object_or_404 , redirect , HttpResponseRedirect
 from django.views import View
-from .models import Post , Like , PostVisit
+from .models import Post , Like , PostVisit , Comment
 from django.urls import reverse
 from django.http import JsonResponse
-from .forms import CommentForm
+from .forms import CommentForm , CommentReplyForm
 from django.contrib import messages
 
 
@@ -20,14 +20,14 @@ class BlogView(View):
         return render(request , self.template_name , {'posts':post})
 
 class PostDetailView(View):
-
+    class_form_reply = CommentReplyForm
     class_form = CommentForm
     def get(self, request, slug, id):
-        
+        reply_form = self.class_form_reply()
         form =self.class_form()
         post = get_object_or_404(Post, id=id , slug = slug)
         user = request.user
-        comment = post.postcomment.filter(confirme = True)
+        comment = post.postcomment.filter(confirme = True , is_reply = False)
         has_liked = False #مقدار پیش فرض 
         x_forwarded_for  = request.META.get('X-Forwarded-For')
         if x_forwarded_for :
@@ -40,7 +40,7 @@ class PostDetailView(View):
         if user.is_authenticated :
             if Like.objects.filter(user = user , post = post).exists():
                 has_liked = True
-        return render(request, 'blog/post_detail.html',{'comment':comment,'post': post , 'has_liked':has_liked , 'like_count':post.like_count() , 'form':form})
+        return render(request, 'blog/post_detail.html',{'comment':comment,'post': post , 'has_liked':has_liked , 'like_count':post.like_count() , 'form':form , 'reply_form':reply_form})
     
     def post(self , request ,slug, id ):
         post = get_object_or_404(Post, id=id , slug = slug)
@@ -48,7 +48,7 @@ class PostDetailView(View):
         
         
            
-        if form.is_valid:
+        if form.is_valid():
             if not request.user.is_authenticated:
                 next_url = reverse('blog:post_detail', kwargs={'slug': slug, 'id': id})
                 login_url = reverse("account:user_login")  # مسیر لاگین
@@ -83,3 +83,24 @@ class LikePostView(View):
         
         return JsonResponse({'status': 'liked', 'like_count':post.like_count() })
 
+class CommentReplyView(View):
+    class_form = CommentReplyForm
+    
+    def post(self,request , post_id , comment_id ):
+        post = get_object_or_404(Post , id = post_id)
+        comment = get_object_or_404(Comment , id = comment_id)
+        reply_form = self.class_form(request.POST)
+        if reply_form.is_valid():
+            New_reply = reply_form.save(commit=False)
+            New_reply.user = request.user
+            New_reply.post = post
+            New_reply.reply = comment 
+            New_reply.is_reply = True
+            New_reply.save()
+            messages.success(request , "کامنت شما ثبت شد و پس از تأیید نمایش داده می‌شود.")
+        return redirect('blog:post_detail' , post.slug , post.id )
+
+        
+        
+
+ 

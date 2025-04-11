@@ -25,10 +25,11 @@ class PostAdmin(admin.ModelAdmin):
 
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
-    list_display=('post','user','jpublish','confirme',)
-    ordering = ('confirme','created',)
+    list_display=('user','content','post','jpublish','confirme','reply',)
+    ordering = ('confirme','-created',)
     search_fields = ('post','user',)
-    readonly_fields = ('user_display',)
+    readonly_fields = ('user_display','is_reply',)
+    list_filter = ('created',)
     def user_display(self, obj):
         if obj.user:
             return obj.user.full_name

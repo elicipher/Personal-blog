@@ -12,3 +12,14 @@ class CommentForm(forms.ModelForm):
         labels ={
             'content':''
         }
+class CommentReplyForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ('content',)
+        widgets = {
+            'content' : forms.Textarea(attrs={'name':'form-message' , 'placeholder':'پاسخ شما', 'rows':'8'})
+
+        }
+        labels ={
+            'content':''
+        }

@@ -1666,3 +1666,49 @@ button:hover {
     background-color: #45a049;
 }
 
+.like-text {
+    color: black !important;
+}
+.like-count {
+    color: black !important;
+}
+
+.userphoto {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+.userphoto img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 15px;
+}
+
+.comment-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.comment-info h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.comment-info span {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.comment-info p {
+    font-size: 1rem;
+    color: #333;
+    line-height: 1.5;
+}

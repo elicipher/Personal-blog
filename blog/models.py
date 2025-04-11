@@ -83,16 +83,15 @@ class Comment(models.Model):
     content = models.TextField(max_length=500,verbose_name="متن کامنت")
     confirme = models.BooleanField(default=False , verbose_name='تایید شده')
     created = models.DateTimeField(auto_now_add=True , verbose_name='تاریخ ارسال')
-    replay = models.ForeignKey('self',on_delete=models.CASCADE , related_name='replies', verbose_name='پاسخ', null=True , blank=True )
-
+    reply = models.ForeignKey('self',on_delete=models.CASCADE , related_name='replies', verbose_name='پاسخ', null=True , blank=True )
+    is_reply = models.BooleanField(default=False)
     class Meta():
         verbose_name = "نظر"
         verbose_name_plural = "نظرات" 
     def __str__(self):
-        return f'کامنت {self.user}  روی "{self.post}"'
+        return f'کامنت {self.user} : "{self.content}'
     
-    def is_reply(self):
-        return self.replay is not None
+   
     
     def jpublish(self):
         return time_Converter(self.created)
