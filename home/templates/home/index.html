@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-
+{% block title %} خانه{% endblock %}
     <body>
 
         <!--Preloader-->
@@ -62,7 +62,7 @@
         <!--Navbar End-->
 
         <!--Home Section Start-->
-        <section id="home" class="banner banner-centered" style="background-image: url('{{ STATIC_PATH }}images/background/creative2-banner-bg.jpg')" data-stellar-background-ratio=".7" data-scroll-index="0">
+        <section id="home" class="banner banner-centered" style="background-image: url('{{ STATIC_PATH }}images/background/creative2-banner-b.jpg')" data-stellar-background-ratio=".7" data-scroll-index="0">
                 <!--Banner Content-->
                 <div class="banner-caption">
                     <h1>سلام من المیرا نیکرودی هستم</h1>
@@ -93,7 +93,7 @@
                     <div class="col-lg-5 col-md-6">
                         <!--About Image-->
                         <div class="about-img">
-                            <img src="{{ STATIC_PATH }}images/about-img.jpg" alt="">
+                            <img src="{{ STATIC_PATH }}images/EliCipher.jpg" alt="">
                         </div>
                     </div>
                     <div class="col-lg-7 col-md-6">
@@ -101,10 +101,11 @@
                         <div class="about-content">
                             <div class="about-heading">
                                 <h2>درباره من</h2>
-                                <span>مرجع قالب و اسکریپت های فارسی</span>
-                            </div>
-                            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد </p>
-                            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد </p>
+                                <span>آرتیست و توسعه‌دهنده وب</span>
+                                </div>
+                                <p>من الی‌ام، یه دانشجوی مهندسی نرم‌افزار که عاشق دنیای طراحی و برنامه‌نویسیه. هم با قلم و رنگ کار می‌کنم، هم با کد و دیباگ! اینجا جاییه برای اشتراک هنر، تجربه و کدهایی که بهم زندگی می‌دن :)</p>
+                                <p>اگه به طراحی، وب یا هنر دیجیتال علاقه‌مندی، با هم کلی حرف واسه گفتن داریم!</p>
+                                
                             <!--About Social Icons-->
                             <div class="social-icons">
                                 <a href="#"><i class="fa fa-facebook"></i></a>
@@ -139,60 +140,31 @@
                         <!--Service Item-->
                         <div class="service-item">
                             <span class="icon">
-                                <i class="fa fa-laptop"></i>
-                            </span>
-                            <h4>طراحی وب</h4>
-                            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است </p>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <!--Service Item-->
-                        <div class="service-item">
-                            <span class="icon">
-                                <i class="fa fa-gears"></i>
-                            </span>
-                            <h4>توسعه وب</h4>
-                            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است </p>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <!--Service Item-->
-                        <div class="service-item">
-                            <span class="icon">
-                                <i class="fa fa-mobile"></i>
-                            </span>
-                            <h4>طراحی واکنش گرا</h4>
-                            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است </p>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <!--Service Item-->
-                        <div class="service-item">
-                            <span class="icon">
-                                <i class="fa fa-rocket"></i>
-                            </span>
-                            <h4>برندسازی</h4>
-                            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است </p>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <!--Service Item-->
-                        <div class="service-item">
-                            <span class="icon">
                                 <i class="fa fa-pencil"></i>
                             </span>
-                            <h4>طراحی خلاقانه</h4>
-                            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است </p>
+                            <h4>طراحی دیجیتالی</h4>
+                            <p>ارائه خدمات طراحی دیجیتال با تمرکز بر خلق آثار خلاقانه، از طراحی کاراکتر و محیط گرفته تا تصویرسازی‌های داستانی، با استفاده از ابزارهای حرفه‌ای دیجیتال آرت.</p>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <!--Service Item-->
                         <div class="service-item">
                             <span class="icon">
-                                <i class="fa fa-support"></i>
+                                <i class="fa fa-laptop"></i>
                             </span>
-                            <h4>پشتیبانی</h4>
-                            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است </p>
+                            <h4>توسعه وب</h4>
+                            <p>ارائه خدمات توسعه وب با استفاده از فریم‌ورک قدرتمند Django — سریع، امن و مناسب برای انواع پروژه‌های تحت وب.</p>
+
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <!--Service Item-->
+                        <div class="service-item">
+                            <span class="icon">
+                                <i class="fa fa-film"></i>
+                            </span>
+                            <h4>انیمیشن سازی</h4>
+<p>ارائه خدمات انیمیشن‌سازی دوبعدی با تمرکز بر سبک کارتونی، مناسب برای برندها، محتوای آموزشی، داستان‌های تصویری و پروژه‌های خلاقانه.</p>
                         </div>
                     </div>
                 </div>
@@ -201,7 +173,7 @@
         <!--Services Section End-->
 
         <!--Stats Section Start-->
-        <section class="stats pt-100 pb-100" style="background-image: url('{{ STATIC_PATH }}images/background/stats-bg.jpg')">
+        <section class="stats pt-100 pb-100" style="background-image: url('{{ STATIC_PATH }}images/background/stats-b.jpg')">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-3 col-md-6">
@@ -262,110 +234,112 @@
                         <div class="portfolio-filter text-center">
                             <ul>
                                 <li class="sel-item" data-filter="*">همه</li>
-                                <li data-filter=".design">طراحی وب</li>
-                                <li data-filter=".application">اپلیکیشن</li>
-                                <li data-filter=".development">توسعه</li>
+                                <li data-filter=".application">انیمیشن</li>
+                                /
+                                <li data-filter=".development">نقاشی</li>
                             </ul>
                         </div>
                     </div>
                 </div>
                 <div class="row portfolio-items">
+
                     <!--Portfolio Item-->
-                    <div class="col-lg-4 col-md-6 item application">
+                    <div class="col-lg-4 col-md-6 item development">
                         <div class="item-content">
-                            <img src="{{ STATIC_PATH }}images/portfolio/img-1.jpg" alt="">
+                            <img src="{{ STATIC_PATH }}images/portfolio/art-1.png" alt="">
                             <div class="item-overlay">
-                                <h6>اپلیکیشن</h6>
-                                <div class="icons">
-                                    <span class="icon link">
-                                        <a href="{{ STATIC_PATH }}images/portfolio/img-1.jpg">
-                                            <i class="fa fa-search"></i>
-                                        </a>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--Portfolio Item-->
-                    <div class="col-lg-4 col-md-6 item design">
-                        <div class="item-content">
-                            <img src="{{ STATIC_PATH }}images/portfolio/img-2.jpg" alt="">
-                            <div class="item-overlay">
-                                <h6>طراحی وب</h6>
-                                <div class="icons">
-                                    <span class="icon link">
-                                        <a href="{{ STATIC_PATH }}images/portfolio/img-2.jpg">
-                                            <i class="fa fa-search"></i>
-                                        </a>
-                                    </span>
-                                </div>
+                                <h6>نقاشی</h6>
                             </div>
                         </div>
                     </div>
                     <!--Portfolio Item-->
                     <div class="col-lg-4 col-md-6 item development">
                         <div class="item-content">
-                            <img src="{{ STATIC_PATH }}images/portfolio/img-3.jpg" alt="">
+                            <img src="{{ STATIC_PATH }}images/portfolio/art-2.png" alt="">
                             <div class="item-overlay">
-                                <h6>اپلیکیشن</h6>
-                                <div class="icons">
-                                    <span class="icon link">
-                                        <a href="{{ STATIC_PATH }}images/portfolio/img-3.jpg">
-                                            <i class="fa fa-search"></i>
-                                        </a>
-                                    </span>
-                                </div>
+                                <h6>نقاشی</h6>
                             </div>
                         </div>
                     </div>
                     <!--Portfolio Item-->
-                    <div class="col-lg-4 col-md-6 item design development">
+                    <div class="col-lg-4 col-md-6 item development">
                         <div class="item-content">
-                            <img src="{{ STATIC_PATH }}images/portfolio/img-4.jpg" alt="">
+                            <img src="{{ STATIC_PATH }}images/portfolio/art-3.png" alt="">
                             <div class="item-overlay">
-                                <h6>توسعه</h6>
-                                <div class="icons">
-                                    <span class="icon link">
-                                        <a href="{{ STATIC_PATH }}images/portfolio/img-4.jpg">
-                                            <i class="fa fa-search"></i>
-                                        </a>
-                                    </span>
-                                </div>
+                                <h6>نقاشی</h6>
                             </div>
                         </div>
                     </div>
                     <!--Portfolio Item-->
-                    <div class="col-lg-4 col-md-6 item development application">
+                    <div class="col-lg-4 col-md-6 item development">
                         <div class="item-content">
-                            <img src="{{ STATIC_PATH }}images/portfolio/img-5.jpg" alt="">
+                            <img src="{{ STATIC_PATH }}images/portfolio/art-4.png" alt="">
                             <div class="item-overlay">
-                                <h6>طراحی وب</h6>
-                                <div class="icons">
-                                    <span class="icon link">
-                                        <a href="{{ STATIC_PATH }}images/portfolio/img-5.jpg">
-                                            <i class="fa fa-search"></i>
-                                        </a>
-                                    </span>
-                                </div>
+                                <h6>نقاشی</h6>
                             </div>
                         </div>
                     </div>
                     <!--Portfolio Item-->
-                    <div class="col-lg-4 col-md-6 item application development">
+                    <div class="col-lg-4 col-md-6 item development">
                         <div class="item-content">
-                            <img src="{{ STATIC_PATH }}images/portfolio/img-6.jpg" alt="">
+                            <img src="{{ STATIC_PATH }}images/portfolio/art-5.png" alt="">
                             <div class="item-overlay">
-                                <h6>طراحی وب</h6>
-                                <div class="icons">
-                                    <span class="icon link">
-                                        <a href="{{ STATIC_PATH }}images/portfolio/img-6.jpg">
-                                            <i class="fa fa-search"></i>
-                                        </a>
-                                    </span>
-                                </div>
+                                <h6>نقاشی</h6>
                             </div>
                         </div>
                     </div>
+                    <!--Portfolio Item-->
+                    <div class="col-lg-4 col-md-6 item development">
+                        <div class="item-content">
+                            <img src="{{ STATIC_PATH }}images/portfolio/art-6.png" alt="">
+                            <div class="item-overlay">
+                                <h6>نقاشی</h6>
+                            </div>
+                        </div>
+                    </div>
+                   
+                    <!--Portfolio Item-->
+                    <div class="col-lg-4 col-md-6 item application">
+                        <div class="item-content">
+                            <!-- پخش ویدیو داخلی -->
+                            <video width="100%" height="auto" controls>
+                                <source src="{{ STATIC_PATH }}images/portfolio/video-1.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                            <div class="item-overlay">
+                                <h6>انیمیشن</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Portfolio Item-->
+                    <div class="col-lg-4 col-md-6 item application">
+                        <div class="item-content">
+                            <!-- پخش ویدیو داخلی -->
+                            <video width="100%" height="auto" controls>
+                                <source src="{{ STATIC_PATH }}images/portfolio/video-2.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                            <div class="item-overlay">
+                                <h6>انیمیشن</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Portfolio Item-->
+                    <div class="col-lg-4 col-md-6 item application">
+                        <div class="item-content">
+                            <!-- پخش ویدیو داخلی -->
+                            <video width="100%" height="auto" controls>
+                                <source src="{{ STATIC_PATH }}images/portfolio/video-3.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                            <div class="item-overlay">
+                                <h6>انیمیشن</h6>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
+
                 </div>
             </div>
         </section>
@@ -384,86 +358,31 @@
                 </div>
                 <div class="row">
                     <div class="owl-carousel owl-theme">
+                        {% for post in posts %}
                         <!--Blogs Item-->
                         <div class="blog-item">
                             <div class="blog-img">
                                 <a href="single-blog.html">
-                                    <img src="{{ STATIC_PATH }}images/blog/img-1.jpg" alt="">
+                                    {% if post.image %}
+                                    <img src="{{post.image.url}}" alt="">
+                                    {% endif %}
+                                    
                                 </a>
                             </div>
                             <div class="blog-content">
-                                <h3>لورم ایپسوم متن ساختگی با تولید سادگی </h3>
-                                <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است </p>
+                                <h3>{{post.title}}</h3>
+                                <p>{{post.description|truncatechars:50|safe }}</p>
                                 <div class="blog-meta">
                                     <span class="more">
-                                        <a href="single-blog.html">مطالعه بیشتر</a>
+                                        <a href="{% url 'blog:post_detail' post.slug post.id %}">مطالعه بیشتر</a>
                                     </span>
                                     <span class="date">
-                                        22 مرداد 1400
+                                        {{post.jpublish}}
                                     </span>
                                 </div>
                             </div>
                         </div>
-                        <!--Blogs Item-->
-                        <div class="blog-item">
-                            <div class="blog-img">
-                                <a href="single-blog.html">
-                                    <img src="{{ STATIC_PATH }}images/blog/img-2.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="blog-content">
-                                <h3>لورم ایپسوم متن ساختگی با تولید سادگی </h3>
-                                <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است </p>
-                                <div class="blog-meta">
-                                    <span class="more">
-                                        <a href="single-blog.html">مطالعه بیشتر</a>
-                                    </span>
-                                    <span class="date">
-                                        22 مرداد 1400
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <!--Blogs Item-->
-                        <div class="blog-item">
-                            <div class="blog-img">
-                                <a href="single-blog.html">
-                                    <img src="{{ STATIC_PATH }}images/blog/img-3.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="blog-content">
-                                <h3>لورم ایپسوم متن ساختگی با تولید سادگی </h3>
-                                <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است </p>
-                                <div class="blog-meta">
-                                    <span class="more">
-                                        <a href="single-blog.html">مطالعه بیشتر</a>
-                                    </span>
-                                    <span class="date">
-                                        22 مرداد 1400
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <!--Blogs Item-->
-                        <div class="blog-item">
-                            <div class="blog-img">
-                                <a href="single-blog.html">
-                                    <img src="{{ STATIC_PATH }}images/blog/img-4.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="blog-content">
-                                <h3>لورم ایپسوم متن ساختگی با تولید سادگی </h3>
-                                <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است </p>
-                                <div class="blog-meta">
-                                    <span class="more">
-                                        <a href="single-blog.html">مطالعه بیشتر</a>
-                                    </span>
-                                    <span class="date">
-                                        22 مرداد 1400
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
+                        {% endfor %}
                     </div>
                 </div>
                 <div class="row">
@@ -478,38 +397,39 @@
         <!--Blog Section End-->
 
         <!--Testimonials Section Start-->
-        <section class="testimonials pt-100 pb-100" style="background-image: url('{{ STATIC_PATH }}images/background/testimonials-bg.jpg')">
+        <section class="testimonials pt-100 pb-100" style="background-image: url('{{ STATIC_PATH }}images/background/banner.jpg')">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-10 offset-lg-1">
                         <div class="owl-carousel owl-theme text-center">
+                            <h1 style="color: aliceblue;"> ✨ارتباط با من✨ </h1>
                             <!--Testimonials Item-->
-                            <div class="testimonial-item">
+                            <!-- <div class="testimonial-item">
                                 <div class="author-img">
                                     <img src="{{ STATIC_PATH }}images/testimonial/img-1.jpg" alt="">
                                 </div>
                                 <h5>آدام همتی</h5>
                                 <span>کارگردان خلاق</span>
                                 <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد </p>
-                            </div>
+                            </div> -->
                             <!--Testimonials Item-->
-                            <div class="testimonial-item">
+                            <!-- <div class="testimonial-item">
                                 <div class="author-img">
                                     <img src="{{ STATIC_PATH }}images/testimonial/img-1.jpg" alt="">
                                 </div>
                                 <h5>آدام همتی</h5>
                                 <span>کارگردان خلاق</span>
                                 <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد </p>
-                            </div>
+                            </div> -->
                             <!--Testimonials Item-->
-                            <div class="testimonial-item">
+                            <!-- <div class="testimonial-item">
                                 <div class="author-img">
                                     <img src="{{ STATIC_PATH }}images/testimonial/img-1.jpg" alt="">
                                 </div>
                                 <h5>آدام همتی</h5>
                                 <span>کارگردان خلاق</span>
                                 <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد </p>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>

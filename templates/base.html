@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html dir="rtl" lang="en">
     <head>
-
+        
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -28,11 +28,12 @@
             height: 24px;
         }
     </style>
-
-        <title>قالب تک صفحه ای رزومه و نمونه کار | نت کپی مرجع قالب و اسکریپت فارسی</title>
+        
+        <title>{% block title %}{% endblock %}</title>
+        
 
         <!-- favicon -->
-        <link href="{{ STATIC_PATH }}images/favicon.ico" rel="icon" type="image/png">
+        <link href="{{ STATIC_PATH }}images/icon_eli.png" rel="icon" type="image/png">
 
         <!--Font Awesome css-->
         <link rel="stylesheet" href="{{ STATIC_PATH }}css/font-awesome.min.css">

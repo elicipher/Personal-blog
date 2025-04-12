@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
+
     <body>
 
         <!--Preloader Start-->
@@ -10,8 +11,8 @@
         <nav class="navbar navbar-expand-lg navbar-dark">
             <div class="container">
                 <!-- LOGO -->
-                <a class="navbar-brand logo" href="index.html">
-                    نت کپی
+                <a class="navbar-brand logo" href="{% url 'home:home' %}">
+                    الی سایفر
                 </a>
 
                 <ul class="navbar-nav ml-auto">
@@ -29,7 +30,7 @@
             <div class="banner-caption text-center">
                 <h1>صفحه پست وبلاگ</h1>
                 <div class="bread-crumb mt-10">
-                    <a href="index.html">خانه</a>
+                    <a href="{% url 'home:home' %}">خانه</a>
                     <a href="{% url 'blog:blog' %}">وبلاگ</a>
                     <a href="#">صفحه</a>
                 </div>
@@ -49,6 +50,7 @@
                         </div>
                         <!--Blog Heading-->
                         <div class="blog-heading">
+                            {% block title %}{{post.title}}{% endblock %}
                             <h2>{{post.title}}</h2>
                             <div class="blog-meta">
                                 <span class="date">{{post.jpublish}}</span>
